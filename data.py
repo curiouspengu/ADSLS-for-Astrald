@@ -6,7 +6,7 @@ import webbrowser
 import datetime
 import requests
 
-DEBUG_MODE = True
+DEBUG_MODE = False
 
 def fetch_links():
     api_url = 'http://curiouspengu.pythonanywhere.com/link_relay/get_links/'    
