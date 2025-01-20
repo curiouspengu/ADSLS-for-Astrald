@@ -1,6 +1,6 @@
 # ADSLS-for-Astrald
 Atlas Direct Server Link Sniper
-- Snipes links from (Astrald's Server)[https://discord.gg/3Q23wBnK2H] in under 2 seconds
+- Snipes links from [Astrald's Server](https://discord.gg/3Q23wBnK2H) in under 2 seconds
 
 # Radiant Team
 ### Owners
