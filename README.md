@@ -1,6 +1,9 @@
 # ADSLS-for-Astrald
 Atlas Direct Server Link Sniper
 - Snipes links from [Astrald's Server](https://discord.gg/3Q23wBnK2H) in under 2 seconds
+- Install Python v3+
+- Download from Releases
+- Run file while Singularity Link Sniper is active
 
 # Radiant Team
 ### Owners

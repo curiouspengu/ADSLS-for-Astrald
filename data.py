@@ -2,11 +2,12 @@ from collections import deque
 import random
 from time import sleep
 import webbrowser
+import subprocess
 
 import datetime
 import requests
 
-DEBUG_MODE = True
+DEBUG_MODE = False
 
 def fetch_links():
     api_url = 'http://curiouspengu.pythonanywhere.com/link_relay/get_links/'    
@@ -82,7 +83,10 @@ def sp():
         webbrowser.open("https://www.roblox.com/games/5080477735/Donations-to-Curious-Pengu#!/store")
 
 def join_ps_link(link):
-    webbrowser.open(link)
+    server_code = link.split(r"LinkCode=")[-1]
+    final_link = f"roblox://placeID=15532962292^&linkCode={server_code}"
+    subprocess.Popen(["start", final_link], shell=True)
+    
 
 if __name__ == "__main__":
     main()
