@@ -8,12 +8,36 @@ import datetime
 import requests
 
 DEBUG_MODE = False
+CURRENT_VERSION = "ADSLS-v1.3"
 
 def fetch_links():
     api_url = 'http://curiouspengu.pythonanywhere.com/link_relay/get_links/'    
     response = requests.get(api_url)
     links = response.json().get('links', [])
     return links
+
+
+def check_for_updates():
+    url = f"https://api.github.com/repos/curiouspengu/ADSLS-for-Astrald/releases"
+    headers = {'Accept': 'application/vnd.github.v3+json'}
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
+        releases = response.json()
+        if releases:
+            latest_release = releases[0]["tag_name"]
+        else:
+            return "No releases found"
+    else:
+        return
+    
+    if (not CURRENT_VERSION == latest_release):
+        print("You can update! Update here:\nhttps://github.com/curiouspengu/ADSLS-for-Astrald/releases\n")
+        print(f"Your version: {CURRENT_VERSION}")
+        print(f"Latest version: {latest_release}")
+        print("Wait 5 seconds.")
+        sleep(5)
+        input("Press enter to continue... ")
 
 def main():
     sniped_tables = []
@@ -61,14 +85,11 @@ I'm not forcing you to donate, but at the end of the day most of Radiant Team's 
                 if divmod(duration_in_s, 60)[0] < 4:
                     if "https://www.roblox.com/games/15532962292/Sols-RNG-Eon1-1?privateServerLinkCode=" in link["url"]:
                         join_ps_link(link["url"])
-                    else:
-                        print("In regards to the current crosswood situation, we have disabled all links that aren't sols rng links.")
+                        sleep(200)
                 elif DEBUG_MODE == True:
                     print("REJECTED DUE TO TIME")
             elif DEBUG_MODE == True:
                 print("REJECTED DUE TO TIME")
-        
-
             while len(previous_links) > 50:
                 previous_links.popleft()
         
@@ -89,4 +110,5 @@ def join_ps_link(link):
     
 
 if __name__ == "__main__":
+    check_for_updates()
     main()
